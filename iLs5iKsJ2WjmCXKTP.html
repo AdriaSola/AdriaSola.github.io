@@ -1,0 +1,360 @@
+<!DOCTYPE html><html><head><base href="." target="_blank">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Suspensión en Maquinaria Pesada</title>
+<style>
+:root {
+  --primary-color: #1a237e;
+  --secondary-color: #3949ab;
+  --accent-color: #00bcd4;
+  --text-color: #212121;
+  --bg-color: #fafafa;
+  --card-bg: #ffffff;
+  transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] {
+  --primary-color: #3949ab;
+  --secondary-color: #5c6bc0;
+  --accent-color: #26c6da;
+  --text-color: #e0e0e0;
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  line-height: 1.8;
+  color: var(--text-color);
+  background: var(--bg-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  background: var(--card-bg);
+  border: 2px solid var(--accent-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-color);
+  color: var(--card-bg);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.navbar {
+  background: rgba(26, 35, 126, 0.98);
+  backdrop-filter: blur(10px);
+  padding: 1.2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar li {
+  margin: 0 1.5rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.navbar a:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.hero {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 10rem 2rem 6rem;
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+section {
+  margin: 4rem 0;
+  padding: 3rem;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+
+section:hover {
+  transform: translateY(-5px);
+}
+
+h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+h2:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+h3 {
+  color: var(--secondary-color);
+  margin: 1.5rem 0 1rem;
+  font-size: 1.5rem;
+}
+
+.factors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.factor-card {
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+  transition: transform 0.3s;
+}
+
+.factor-card:hover {
+  transform: translateY(-5px);
+}
+
+.text-content {
+  margin-bottom: 2rem;
+}
+
+.text-content p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+.effects-list {
+  list-style: none;
+  margin: 2rem 0;
+}
+
+.effects-list li {
+  margin-bottom: 1.2rem;
+  padding: 1rem 1.5rem;
+  background: var(--bg-color);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
+}
+
+.bibliografia {
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.bibliografia p {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+  text-indent: -2rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .navbar li {
+    margin: 0.5rem 0;
+  }
+  
+  .hero {
+    padding: 8rem 1rem 4rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  section {
+    padding: 2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle">
+  <svg class="sun-icon" viewBox="0 0 24 24">
+    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"></path>
+  </svg>
+  <span>Cambiar Tema</span>
+</button>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="#introduccion">Introducción</a></li>
+    <li><a href="#aspectos-generales">Aspectos Generales</a></li>
+    <li><a href="#factores">Factores</a></li>
+    <li><a href="#efectos">Efectos Negativos</a></li>
+    <li><a href="#bibliografia">Bibliografía</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <h1>Sistema de Suspensión en Maquinaria Pesada</h1>
+  <p>Última actualización: 15 de agosto de 2023</p>
+</div>
+
+<div class="container">
+  <section id="aspectos-generales">
+    <h2>Sistema de Suspensión en Maquinaria Pesada: Aspectos Generales</h2>
+    <div class="text-content">
+      <h3>Definición de sistema de suspensión</h3>
+      <p>El sistema de suspensión es un conjunto de componentes diseñados para absorber los impactos y vibraciones generadas durante la operación de la maquinaria. Su función principal es mantener la estabilidad y comodidad de la máquina, garantizando que el operador tenga un control seguro y eficiente. Estos sistemas están compuestos por amortiguadores, resortes, brazos de suspensión, entre otros, que permiten que las ruedas o tracks absorban las irregularidades del terreno.</p>
+      
+      <h3>Definición de sistemas de suspensión en maquinaria pesada</h3>
+      <p>En el caso de la maquinaria pesada, el sistema de suspensión tiene características adaptadas a las necesidades de trabajo en entornos de alta exigencia. Las suspensiones hidráulicas, neumáticas y mecánicas son los tipos más comunes utilizados en excavadoras, cargadoras, y otros equipos pesados. Estos sistemas están diseñados para soportar el peso y las cargas pesadas, asegurando una distribución equilibrada del impacto y mejorando la estabilidad durante las operaciones de alto rendimiento.</p>
+      
+      <h3>Impacto de fallas en el sistema de suspensión</h3>
+      <p>Las fallas en el sistema de suspensión pueden tener efectos graves tanto en el rendimiento de la maquinaria como en la seguridad del operador. Según García (2021), un sistema de suspensión defectuoso puede provocar una pérdida de control en la maquinaria, afectando su maniobrabilidad y aumentando el riesgo de accidentes.</p>
+    </div>
+  </section>
+
+  <section id="factores">
+    <h2>Factores que Afectan el Desempeño del Sistema de Suspensión</h2>
+    <div class="factors-grid">
+      <div class="factor-card">
+        <h3>Sobrecarga de la maquinaria</h3>
+        <p>Según García (2021), la sobrecarga ocurre cuando la carga aplicada excede las capacidades de diseño del equipo, generando mayor estrés en los sistemas de suspensión.</p>
+      </div>
+      
+      <div class="factor-card">
+        <h3>Condiciones extremas del terreno</h3>
+        <p>Martínez y Gómez (2020) señalan que las vibraciones y golpes generados por terrenos accidentados pueden desgastar rápidamente los componentes del sistema.</p>
+      </div>
+      
+      <div class="factor-card">
+        <h3>Diseño inadecuado</h3>
+        <p>López (2019) indica que un sistema mal diseñado incrementa la posibilidad de daños en otros componentes y aumenta los costos operativos.</p>
+      </div>
+      
+      <div class="factor-card">
+        <h3>Mantenimiento deficiente</h3>
+        <p>El Instituto de Maquinaria Pesada (2022) enfatiza que la falta de mantenimiento adecuado es uno de los principales factores que causan fallas.</p>
+      </div>
+      
+      <div class="factor-card">
+        <h3>Materiales de baja calidad</h3>
+        <p>Hernández (2021) señala que los componentes fabricados con materiales inferiores pueden sufrir un desgaste acelerado.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="efectos">
+    <h2>Efectos Negativos de una Suspensión Defectuosa</h2>
+    <ul class="effects-list">
+      <li><strong>Reducción en la capacidad de maniobra:</strong> Sánchez (2020) indica que esto afecta especialmente en terrenos difíciles donde se requieren ajustes precisos.</li>
+      <li><strong>Mayor fatiga del operador:</strong> Según Ramírez (2019), las vibraciones excesivas impactan la concentración y desempeño en tareas prolongadas.</li>
+      <li><strong>Aumento de fallas en otros componentes:</strong> García (2021) señala que esto incrementa los costos de mantenimiento y reparación.</li>
+      <li><strong>Desgaste acelerado:</strong> López (2019) menciona que esto lleva a la necesidad de reemplazos frecuentes.</li>
+      <li><strong>Incremento en tiempos de inactividad:</strong> El Instituto de Maquinaria Pesada (2022) destaca que las interrupciones frecuentes afectan la productividad.</li>
+    </ul>
+  </section>
+
+  <section id="bibliografia" class="bibliografia">
+    <h2>Bibliografía</h2>
+    <p>García, J. (2021). Impacto de fallas en el sistema de suspensión sobre la seguridad y el rendimiento del operador. Revista de Ingeniería Mecánica.</p>
+    <p>Martínez, F., &amp; Gómez, R. (2020). Estudio sobre las condiciones extremas del terreno y su efecto en maquinaria pesada. Revista de Ingeniería, 45(3), 123-135.</p>
+    <p>López, M. (2019). Diseño y mantenimiento de sistemas de suspensión en maquinaria pesada. Editorial Técnica.</p>
+    <p>Instituto de Maquinaria Pesada. (2022). Mantenimiento preventivo de sistemas de suspensión en maquinaria pesada. Informe técnico No. 52.</p>
+    <p>Hernández, P. (2021). Materiales de alta calidad en sistemas de suspensión. Revista de Tecnología, 38(2), 145-159.</p>
+    <p>Sánchez, L. (2020). Efectos de una suspensión defectuosa en la maniobrabilidad de la maquinaria. Diario de Maquinaria, 12(1), 98-104.</p>
+    <p>Ramírez, J. (2019). Impacto de las vibraciones en la fatiga del operador. Revista de Seguridad Laboral, 22(4), 78-84.</p>
+  </section>
+</div>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+const themeToggle = document.getElementById('themeToggle');
+const root = document.documentElement;
+
+const savedTheme = localStorage.getItem('theme') || 'light';
+root.setAttribute('data-theme', savedTheme);
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = root.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    root.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+});
+</script>
+
+</body></html>
